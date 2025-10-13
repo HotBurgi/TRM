@@ -2,144 +2,116 @@
 
 ## Introduzione
 
-TRM (The Real Manager) è un progetto nato con l’obiettivo di creare un sistema di gestione dei task semplice, intuitivo e personalizzabile, pensato per team di sviluppo, aziende e professionisti che necessitano di un gestionale pratico per l’organizzazione del lavoro quotidiano.
+**TRM (The Real Manager)** è un progetto realizzato in due settimane, con l’obiettivo di creare un gestionale per la gestione dei task semplice, chiaro e veloce da usare.  
+È pensato per team di sviluppo, aziende o professionisti che vogliono organizzare il proprio lavoro in modo più efficiente, senza la complessità di strumenti troppo pesanti come Trello o Jira.
 
-L’idea prende spunto da strumenti noti come Trello e Jira, ma mira a offrire un approccio più diretto, con un’interfaccia pulita, la possibilità di adattarsi a diversi contesti e un’architettura facilmente estendibile.  
+L’idea è nata dalla necessità di avere una piattaforma leggera, personalizzabile e facilmente adattabile a diversi tipi di progetti.  
+L’interfaccia è stata progettata in Figma e poi sviluppata con **Svelte**, **HTML** e **Tailwind CSS**.
 
 ---
 
 ## Obiettivi del progetto
 
-L’obiettivo principale è realizzare una web application per la gestione delle attività e dei progetti, che consenta di:
+L’obiettivo principale era sviluppare una web app in grado di:
+- Visualizzare i task in modo ordinato e intuitivo.
+- Gestire lo stato di avanzamento del lavoro (Backlog → In Progress → Review → Done).
+- Permettere l’assegnazione e la priorità dei compiti.
+- Offrire un’interfaccia responsive, adatta sia a desktop che a mobile.
+- Garantire affidabilità e semplicità d’uso.
 
-- Visualizzare le attività secondo il flusso di lavoro (Backlog → In Progress → Review → Done).
-- Gestire le priorità e gli assegnatari.
-- Offrire un’interfaccia responsive, accessibile da dispositivi desktop e mobile.
-- Fornire statistiche di avanzamento e strumenti di ricerca interni.
-- Garantire sicurezza, affidabilità e facilità d’uso.
-
-Il progetto è pensato per essere sviluppato in ambiente **Svelt**, utilizzando tecnologie moderne e strumenti open source.
+Il tutto utilizzando un approccio moderno, open source e facilmente estendibile.
 
 ---
 
 ## Analisi dei requisiti
 
-La definizione dei requisiti rappresenta una delle fasi più importanti nello sviluppo del progetto, in quanto serve a tradurre i bisogni degli utenti in funzionalità concrete.  
-Di seguito sono riportate le principali categorie di requisiti individuate.
-
 ### Requisiti funzionali
-
-1. **Gestione dei task**
-   - Creazione, modifica e eliminazione di attività.
-   - Possibilità di spostare i task tra diverse colonne (stati del flusso di lavoro).
-   - Visualizzazione immediata dello stato e della priorità.
-
-2. **Assegnazione e collaborazione**
-   - Ogni task può essere assegnato a uno o più membri del team.
-   - Possibilità di commentare o aggiornare le attività con note brevi.
-
-3. **Sistema di priorità**
-   - Ogni attività è contrassegnata da un livello di priorità (Urgent, Medium, Low, None).
-   - I livelli di priorità influenzano l’ordine di visualizzazione e i filtri.
-
-4. **Ricerca e filtraggio**
-   - Barra di ricerca per titolo, descrizione o assegnatario.
-   - Filtri per stato, priorità o data di creazione.
-
-5. **Gestione delle issue**
-   - Funzione per segnalare bug, problemi o richieste di miglioramento.
-   - Ogni issue può essere classificata e monitorata come un normale task.
-
-6. **Dashboard riepilogativa**
-   - Contatori automatici per ogni colonna (Backlog, In Progress, Review, Done).
-   - Visualizzazione dello stato generale del progetto.
+1. **Gestione dei task:** creazione, modifica, eliminazione e spostamento tra le varie fasi del flusso di lavoro.  
+2. **Assegnazione:** ogni task può essere assegnato a uno o più membri del team.  
+3. **Sistema di priorità:** ogni attività ha un livello (Urgent, Medium, Low, None) per indicare l’importanza.  
+4. **Ricerca e filtri:** possibilità di filtrare i task per stato, priorità o assegnatario.  
+5. **Gestione delle issue:** i bug o le segnalazioni possono essere inseriti e gestiti come task normali.  
+6. **Dashboard riepilogativa:** mostra in tempo reale il numero di task per ogni colonna e lo stato generale del progetto.
 
 ### Requisiti non funzionali
-
-- **Usabilità:** interfaccia semplice e coerente, progettata per ridurre il tempo di apprendimento.
-- **Prestazioni:** caricamento della board entro 2 secondi e interazioni fluide anche con molti task.
-- **Sicurezza:** autenticazione sicura e protezione contro accessi non autorizzati.
-- **Affidabilità:** salvataggio automatico delle modifiche, riduzione dei rischi di perdita dati.
-- **Portabilità:** accessibile da qualsiasi dispositivo tramite browser.
-- **Scalabilità:** architettura predisposta per evoluzioni future.
+- **Usabilità:** interfaccia pulita, chiara e coerente.  
+- **Prestazioni:** caricamento veloce e navigazione fluida.  
+- **Sicurezza:** autenticazione e protezione dei dati.  
+- **Affidabilità:** salvataggio stabile e gestione sicura dei task.  
+- **Portabilità:** accesso da qualsiasi browser moderno.  
+- **Scalabilità:** struttura pensata per futuri ampliamenti.
 
 ### Requisiti di dominio
-
-Il progetto si ispira ai principi dei metodi agili (in particolare **Kanban**), dove ogni attività viene rappresentata come una card che attraversa diverse fasi fino al completamento.  
-Il sistema deve quindi supportare:
-- la collaborazione in team,
-- la tracciabilità delle modifiche,
-- la possibilità di visualizzare in tempo reale lo stato di avanzamento del lavoro.
+Il sistema segue la logica **Kanban**, con la visualizzazione dei task come “card” che si spostano da uno stato all’altro, facilitando la collaborazione e la tracciabilità del lavoro.
 
 ### Requisiti di vincolo
-
-- **Tecnologie:** Svelt JavaScript per la logica del porgetto e html per lo scheltro del progetto e tailwind per la grafica .
-- **Vincoli temporali:** sviluppo previsto in circa due settimane.
-- **Vincoli economici:** progetto open source, senza costi di licenza.
-- **Compatibilità:** funzionamento garantito su browser recenti (Chrome, Edge, Firefox, Safari).
+- **Tecnologie:** Svelte per la logica, HTML per la struttura e Tailwind CSS per la grafica.  
+- **Tempo di sviluppo:** due settimane.  
+- **Licenza:** open source, senza costi.  
+- **Compatibilità:** funziona su tutti i principali browser (Chrome, Edge, Firefox, Safari).
 
 ---
 
 ## Design e interfaccia utente
 
-Il design, realizzato inizialmente su Figma, si ispira al modello Kanban e presenta una suddivisione chiara in quattro colonne principali:
-- **Backlog:** attività pianificate ma non ancora iniziate;
-- **In Progress:** attività in corso di lavorazione;
-- **Review:** attività in revisione o in fase di controllo qualità;
+Il design è ispirato al modello Kanban e suddivide i task in quattro colonne principali:
+- **Backlog:** attività pianificate ma non iniziate.  
+- **In Progress:** attività in lavorazione.  
+- **Review:** attività in revisione o controllo.  
 - **Done:** attività completate.
 
-Ogni card include titolo, descrizione, priorità, assegnatario e pulsanti di azione.  
-Sono inoltre presenti pulsanti per spostare o eliminare le attività, e un contatore automatico che mostra in tempo reale il numero di task per stato.
-
-*(L’immagine allegata rappresenta un prototipo modificato su Figma che illustra la logica generale dell’interfaccia.)*
+Ogni card mostra titolo, descrizione, priorità e assegnatario.  
+Il layout è stato realizzato su **Figma** e successivamente implementato con **Svelte**.  
+Il risultato è un’interfaccia semplice, moderna e facile da comprendere anche per chi non è esperto.
 
 ---
 
 ## Analisi della concorrenza
 
-Prima della progettazione, sono stati analizzati strumenti esistenti (Trello, Jira, Asana, Notion) per valutarne punti di forza e debolezza.  
-I principali limiti riscontrati sono stati la complessità delle interfacce e la difficoltà di personalizzazione per team di piccole dimensioni.  
-TRM mira a colmare questa lacuna offrendo una soluzione più leggera, veloce e completamente adattabile alle proprie esigenze operative.
+Durante la fase di analisi abbiamo studiato strumenti come **Trello**, **Jira**, **Asana** e **Notion**.  
+Abbiamo notato che, sebbene offrano molte funzioni, risultano spesso complessi per piccoli team o progetti più semplici.  
+TRM vuole essere un’alternativa leggera, veloce e personalizzabile, con un’interfaccia pulita e senza elementi superflui.
 
 ---
 
 ## Analisi di fattibilità
 
-- **Fattibilità tecnica:** elevata, grazie all’utilizzo di tecnologie mature e ampiamente documentate.
-- **Fattibilità economica:** sostenibile, essendo un progetto open source.
-- **Fattibilità operativa:** l’interfaccia intuitiva e la struttura modulare permettono una facile adozione da parte degli utenti.
+- **Tecnica:** il progetto è stato realizzato interamente con tecnologie moderne e accessibili, quindi facilmente mantenibile.  
+- **Economica:** non ci sono costi, essendo tutto open source.  
+- **Operativa:** l’app è funzionante e utilizzabile da qualsiasi utente, senza installazioni particolari.
 
 ---
 
-## Pianificazione e fasi di sviluppo
+## Sviluppo e fasi del progetto
 
-1. Analisi dei requisiti e progettazione concettuale.
-2. Prototipazione grafica (mockup su Figma).
-3. Implementazione del frontend e del backend.
-4. Integrazione e test delle funzionalità principali.
-5. Validazione con utenti di prova e correzione dei bug.
-6. Rilascio della versione beta pubblica.
+1. Analisi dei requisiti e definizione delle funzionalità principali.  
+2. Realizzazione del mockup su Figma.  
+3. Sviluppo dell’interfaccia con HTML, Svelte e Tailwind CSS.  
+4. Integrazione della logica di gestione dei task.  
+5. Test e ottimizzazione delle funzionalità.  
+6. Rifinitura grafica e presentazione del progetto.
 
 ---
 
 ## Struttura del team
 
-| Nome      | Ruolo                | Competenze principali                    |
-|------------|----------------------|------------------------------------------|
-| Federico      | Project Manager      | Pianificazione, UI/UX, Tailwind CSS, Svelt  |
-| Mattia      | Frontend Developer   | Gestione repository,Html, Svelt, Js      |
-| Davide   | Backend Developer    | Gestione e revisione del progetto Svelt,Html, Js        |
+| Nome      | Ruolo              | Competenze principali                      |
+|------------|--------------------|--------------------------------------------|
+| Federico   | Project Manager    | Pianificazione, UI/UX, Svelte, Tailwind CSS |
+| Mattia     | Frontend Developer | HTML, Svelte, JavaScript, gestione repository |
+| Davide     | Backend Developer  | Gestione logica progetto, Svelte, HTML, JS  |
 
 ---
 
 ## Allegati
 
-- [Analisi dei requisiti (PDF)](./Dettagli_analisi_requisiti.pdf)
-- [Mockup interfaccia (Figma)](./4f2f3014-77ac-4b8f-9fea-58979a704ad7.png)
+- [Mockup interfaccia (Iniziale)](mockup.png)
+- [Mockup interfaccia (Figma)](mockup_2.0.jpg)
 
 ---
 
 ## Conclusione
 
-TRM – The Real Manager nasce con l’intento di coniugare semplicità e funzionalità, proponendo un sistema di gestione dei task moderno, accessibile e facilmente personalizzabile.  
-Il progetto è ancora in fase di sviluppo, ma si propone come base solida per la creazione di un gestionale flessibile, pensato per chi vuole gestire il proprio lavoro in modo efficiente e senza complicazioni superflue.
+**TRM – The Real Manager** è un progetto completo e funzionante, sviluppato in due settimane.  
+Nasce dall’idea di semplificare la gestione dei task mantenendo un design moderno e un’esperienza d’uso intuitiva.  
+Il risultato è una piattaforma leggera ma efficace, pensata per chi vuole organizzare e monitorare il proprio lavoro in modo pratico e immediato.
