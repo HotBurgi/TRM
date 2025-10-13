@@ -1,50 +1,32 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+/* DaisyUI CDN */
+@import url('https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css');
 
-/* Styles per tasks */
-/* TODO: Da modificare: plain css => tailwindcss || daisyUI */
-/* kanban.css */
 :root { color-scheme: light dark; }
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
 
-header { display: flex; justify-content: space-between; align-items: end; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #ddd; }
+header { display: flex; justify-content: space-between; align-items: end; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--fallback-b3, #ddd); }
 h1 { margin: 0; font-size: 1.75rem; }
-.counts { display: flex; gap: 16px; font-size: 0.95rem; color: #555; flex-wrap: wrap; }
-.counts strong { color: #111; }
 
 .topbar { display: flex; align-items: center; gap: 12px; margin: 16px 0 20px; flex-wrap: wrap; }
 .form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.form input, .form textarea, .form select { padding: 8px; border: 1px solid #ccc; border-radius: 6px; min-width: 160px; }
-.form textarea { min-width: 220px; height: 36px; resize: vertical; }
-.form button { padding: 8px 12px; border: 1px solid #0b5; background: #0c6; color: white; border-radius: 6px; cursor: pointer; }
-.form button:hover { background: #0a5; }
 .search { flex: 1; min-width: 220px; }
-.search input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+.search input { width: 100%; }
 
 .columns { display: flex; gap: 12px; align-items: start; }
 @media (max-width: 900px) { .columns { flex-wrap: wrap; } }
-.column { flex: 1; min-width: 220px; background: #f8f8f8; border: 1px solid #e1e1e1; border-radius: 8px; padding: 8px; }
+.column { flex: 1; min-width: 220px; border-radius: 8px; padding: 8px; }
 .column h3 { margin: 4px 4px 8px; font-size: 1rem; }
 .list { display: flex; flex-direction: column; gap: 8px; min-height: 40px; }
 
-.card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
-.card h4 { margin: 0 0 6px; font-size: 1rem; }
-.meta { font-size: 0.85rem; color: #555; margin-bottom: 6px; }
-.desc { font-size: 0.9rem; color: #333; margin-bottom: 8px; white-space: pre-wrap; }
-.status-select { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 6px; }
+.card { border: 1px solid rgba(0,0,0,0.08); }
+.meta { font-size: 0.85rem; opacity: 0.8; margin-bottom: 6px; }
+.desc { font-size: 0.9rem; margin-bottom: 8px; white-space: pre-wrap; }
+.status-select { width: 100%; }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  body { background: #141414; color: #eee; }
-  header { border-bottom-color: #333; }
-  .counts { color: #bbb; }
-  .counts strong { color: #fff; }
-  .form input, .form textarea, .form select, .search input { background: #111; color: #eee; border-color: #333; }
-  .columns .column { background: #1a1a1a; border-color: #2a2a2a; }
-  .card { background: #111; border-color: #2a2a2a; }
-  .form button { border-color: #0a4; background: #0b5; }
-  .form button:hover { background: #0a4; }
+  header { border-bottom-color: color-mix(in oklab, CanvasText 20%, transparent); }
 }
 /* --------------- END tasks ---------------*/
