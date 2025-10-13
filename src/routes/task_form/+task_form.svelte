@@ -1,3 +1,5 @@
+<!-- TODO: Modificare il form per renderlo conforme al form temporaneo presente in /tasks/+page.svelte -->
+
 <form>
     <label for="title">Title:</label>
     <input type="text" id="title" name="title"><br>
