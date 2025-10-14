@@ -1,2 +1,32 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+/* DaisyUI CDN */
+@import url('https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css');
+
+:root { color-scheme: light dark; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+header { display: flex; justify-content: space-between; align-items: end; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--fallback-b3, #ddd); }
+h1 { margin: 0; font-size: 1.75rem; }
+
+.topbar { display: flex; align-items: center; gap: 12px; margin: 16px 0 20px; flex-wrap: wrap; }
+.form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.search { flex: 1; min-width: 220px; }
+.search input { width: 100%; }
+
+.columns { display: flex; gap: 12px; align-items: start; }
+@media (max-width: 900px) { .columns { flex-wrap: wrap; } }
+.column { flex: 1; min-width: 220px; border-radius: 8px; padding: 8px; }
+.column h3 { margin: 4px 4px 8px; font-size: 1rem; }
+.list { display: flex; flex-direction: column; gap: 8px; min-height: 40px; }
+
+.card { border: 1px solid rgba(0,0,0,0.08); }
+.meta { font-size: 0.85rem; opacity: 0.8; margin-bottom: 6px; }
+.desc { font-size: 0.9rem; margin-bottom: 8px; white-space: pre-wrap; }
+.status-select { width: 100%; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  header { border-bottom-color: color-mix(in oklab, CanvasText 20%, transparent); }
+}
+/* --------------- END tasks ---------------*/
