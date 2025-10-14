@@ -3,7 +3,6 @@
   let tasksData = {};
   let headerData = {};
 
-  // Usa onMount per eseguire fetch client-side
   import { onMount } from 'svelte';
 
   onMount(async () => {
@@ -19,18 +18,14 @@
   });
 </script>
 
-<h1>{headerData.title} {headerData.logo}</h1>
+<section>
+<h2>Header</h2>
+</section>
 
 <section>
-  <h2>{dashboardData.title}</h2>
-  <p>{dashboardData.content}</p>
+  <h2>Dashboard</h2>
 </section>
 
 <section>
   <h2>Tasks</h2>
-  <ul>
-    {#each tasksData.tasks as task}
-      <li>{task}</li>
-    {/each}
-  </ul>
 </section>
