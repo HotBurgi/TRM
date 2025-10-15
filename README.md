@@ -6,7 +6,7 @@
 È pensato per team di sviluppo, aziende o professionisti che vogliono organizzare il proprio lavoro in modo più efficiente, senza la complessità di strumenti troppo pesanti come Trello o Jira.
 
 L’idea è nata dalla necessità di avere una piattaforma leggera, personalizzabile e facilmente adattabile a diversi tipi di progetti.  
-L’interfaccia è stata progettata in Figma e poi sviluppata con **Svelte**, **HTML** e **Tailwind CSS**.
+L’interfaccia è stata progettata in Figma e poi sviluppata con **Svelte**, **HTML** e **DaisyUI**.
 
 ---
 
@@ -45,7 +45,7 @@ Il tutto utilizzando un approccio moderno, open source e facilmente estendibile.
 Il sistema segue la logica **Kanban**, con la visualizzazione dei task come “card” che si spostano da uno stato all’altro, facilitando la collaborazione e la tracciabilità del lavoro.
 
 ### Requisiti di vincolo
-- **Tecnologie:** Svelte per la logica, HTML per la struttura e Tailwind CSS per la grafica.  
+- **Tecnologie:** Svelte per la logica, HTML per la struttura e DaisyUI per la grafica.  
 - **Tempo di sviluppo:** due settimane.  
 - **Licenza:** open source, senza costi.  
 - **Compatibilità:** funziona su tutti i principali browser (Chrome, Edge, Firefox, Safari).
@@ -86,7 +86,7 @@ TRM vuole essere un’alternativa leggera, veloce e personalizzabile, con un’i
 
 1. Analisi dei requisiti e definizione delle funzionalità principali.  
 2. Realizzazione del mockup su Figma.  
-3. Sviluppo dell’interfaccia con HTML, Svelte e Tailwind CSS.  
+3. Sviluppo dell’interfaccia con HTML, Svelte e DaisyUI.  
 4. Integrazione della logica di gestione dei task.  
 5. Test e ottimizzazione delle funzionalità.  
 6. Rifinitura grafica e presentazione del progetto.
@@ -97,7 +97,7 @@ TRM vuole essere un’alternativa leggera, veloce e personalizzabile, con un’i
 
 | Nome      | Ruolo              | Competenze principali                      |
 |------------|--------------------|--------------------------------------------|
-| Federico   | Project Manager    | Pianificazione, UI/UX, Svelte, Tailwind CSS |
+| Federico   | Project Manager    | Pianificazione, UI/UX, Svelte, DaisyUI |
 | Mattia     | Frontend Developer | HTML, Svelte, JavaScript, gestione repository |
 | Davide     | Backend Developer  | Gestione logica progetto, Svelte, HTML, JS  |
 
