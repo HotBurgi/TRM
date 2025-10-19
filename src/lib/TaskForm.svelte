@@ -65,9 +65,8 @@
     </div>
   </div>
 
-  <div class="flex items-center gap-2 pt-2 justify-end">
-    <button type="button" class="btn" on:click={onCancel}>Cancel</button>
-    <button type="submit" class="btn btn-primary">Add Task</button>
+  <div class="pt-2">
+    <button type="submit" class="btn btn-primary w-full">Add Task</button>
   </div>
 </form>
 
@@ -100,6 +99,7 @@
   }
   .btn:hover { filter: brightness(0.98); }
 
+  .w-full { width: 100%; }
   .space-y-3 > * + * { margin-top: 0.75rem; }
   .grid { display: grid; }
   .grid-cols-1 { grid-template-columns: 1fr; }

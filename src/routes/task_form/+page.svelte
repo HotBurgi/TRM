@@ -47,18 +47,31 @@
         window.location.href = '/';
     }
 
+    function handleCancel() {
+        history.back();
+    }
+
     onMount(loadNextId);
 </script>
 
 <main class="min-h-screen bg-base-200 flex items-center justify-center p-4">
-	<section class="card bg-base-100 shadow-xl w-full max-w-3xl">
+	<section class="card bg-base-100 shadow-xl w-full max-w-3xl relative">
+		<!-- X Cancel Button -->
+		<button 
+			class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 z-10"
+			on:click={handleCancel}
+			aria-label="Cancel"
+		>
+			✕
+		</button>
+		
 		<div class="card-body gap-4">
-			<h1 class="text-3xl font-bold">Create Task</h1>
+			<h1 class="text-5xl font-bold">Add Task</h1>
 			<TaskForm
 				{statuses}
 				{priorities}
 				on:submit={handleSubmit}
-				on:cancel={() => history.back()}
+				on:cancel={handleCancel}
 			/>
 		</div>
 	</section>

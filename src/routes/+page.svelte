@@ -177,13 +177,13 @@
                   on:click={() => openEdit(issue)}
                   title="Edit task"
                   aria-label="Edit task"
-                >✏️</button>
+                ></button>
                 <button
                   class="icon-btn delete"
                   on:click={() => deleteTask(issue.id)}
                   title="Delete task"
                   aria-label="Delete task"
-                >x</button>
+                ></button>
               </div>
 
               <div class="card-body">
@@ -224,7 +224,16 @@
       on:keydown={(e) => (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') && (showModal = false)}
     ></div>
     <div class="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
-      <h2 id="task-modal-title" class="mb-2">{editTarget ? 'Edit Task' : 'Add Task'}</h2>
+      <!-- X Cancel Button -->
+      <button 
+        class="modal-close-btn"
+        on:click={() => { showModal = false; editTarget = null; }}
+        aria-label="Close"
+      >
+        ✕
+      </button>
+      
+      <h2 id="task-modal-title" class="modal-title">{editTarget ? 'Edit Task' : 'Add Task'}</h2>
       <TaskForm {statuses} {priorities}
         initial={editTarget ? {
           title: editTarget.title,
@@ -259,17 +268,54 @@
   }
   .task-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     background: var(--page-bg);
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 0.75rem;
-    width: min(560px, 92vw);
+    width: min(600px, 90vw);
+    max-height: 90vh;
+    overflow-y: auto;
     z-index: 1000;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     animation: pop 160ms ease-out;
     border: 1px solid var(--card-border);
+  }
+
+  /* X Close Button */
+  .modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    color: #6b7280;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    transition: all 0.15s ease;
+  }
+  .modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.15);
+    color: #374151;
+  }
+
+  /* Large Modal Title */
+  .modal-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    padding-right: 3rem;
+    color: var(--text-strong);
+    text-align: center;
   }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes pop { from { opacity: 0; transform: translate(-50%, -46%) scale(0.98); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
@@ -324,9 +370,27 @@
     background: #0ea5e9; /* blue for edit */
     border-color: #0284c7;
   }
+  .icon-btn.edit::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   .icon-btn.delete {
     background: #ef4444; /* red for delete */
     border-color: #b91c1c;
+  }
+  .icon-btn.delete::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .icon-btn:hover { filter: brightness(0.95); }
 
