@@ -1,9 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig(async () => {
+	let tailwindPlugin;
+	try {
 		const mod = await import('@tailwindcss/vite');
 		const factory = mod.default ?? mod.tailwindcss ?? mod;
 		if (typeof factory === 'function') tailwindPlugin = factory();
