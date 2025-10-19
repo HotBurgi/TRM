@@ -110,6 +110,27 @@ TRM vuole essere un’alternativa leggera, veloce e personalizzabile, con un’i
 
 ---
 
+## build
+
+### Installazione delle dipendenze
+```
+npm install
+```
+### Build del progetto
+```
+npm run build
+```
+### Creazione immagine docker
+```
+docker build -t trm:latest .
+```
+### Avvio immagine
+```
+docker run --rm -p 80:80 --name trm trm:latest
+```
+
+--
+
 ## Conclusione
 
 **TRM – The Real Manager** è un progetto completo e funzionante, sviluppato in due settimane.  
