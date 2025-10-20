@@ -1,23 +1,29 @@
 <script>
   import { onMount } from 'svelte';
   import TaskForm from '$lib/TaskForm.svelte';
+  
+  // Type definitions for better TypeScript-like support and IDE autocomplete
   /** @typedef {'Backlog'|'In Progress'|'Review'|'Done'} Status */
   /** @typedef {'Urgent'|'Medium'|'Low'|'None'} Priority */
   /** @typedef {{ id:number; title:string; assignee:string; description:string; priority:Priority; status:Status }} Task */
   
+  // Available options for status and priority (used in dropdowns and forms)
   /** @type {Status[]} */
   const statuses = ['Backlog', 'In Progress', 'Review', 'Done'];
   /** @type {Priority[]} */
   const priorities = ['Urgent', 'Medium', 'Low', 'None'];
-  let searchTerm = '';
-  let showModal = false;
-  let editing = null; // holds the task being edited or null
+  
+  // Reactive state variables
+  let searchTerm = '';  // Current search filter text
+  let showModal = false; // Controls modal visibility
+  let editing = null; // TODO: This variable is declared but not used - consider removing
   /** @type {Task | null} */
-  let editTarget = null;
+  let editTarget = null; // The task being edited, or null when creating new task
 
+  // Core data stores
   /** @type {Task[]} */
-  let issues = [];
-  let nextId = 1;
+  let issues = []; // Main array containing all tasks
+  let nextId = 1; // Auto-incrementing ID for new tasks
 
   // Function to save tasks to localStorage
   function saveTasksToLocalStorage() {
@@ -43,6 +49,7 @@
       if (savedNextId) {
         nextId = parseInt(savedNextId);
       } else {
+        // Calculate nextId from existing tasks if not found in storage
         nextId = issues.length ? Math.max(...issues.map(i => i.id)) + 1 : 1;
       }
     }
@@ -71,26 +78,32 @@
       issues = [...issues, newTask];
       saveTasksToLocalStorage();
       
-      // Clean URL after task creation
+      // Clean URL after task creation to prevent duplicate tasks on refresh
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
 
+  // Initialize component: load saved data and check for URL parameters
   onMount(() => {
     loadTasksFromLocalStorage();
     checkUrlParams();
   });
 
+  // Reactive computed properties - automatically update when dependencies change
+  
   /** @type {Record<Status, number>} */
-  $: counts = computeCounts(issues);
+  $: counts = computeCounts(issues); // Recalculates task counts per status when issues change
+  
   $: filteredIssues = issues.filter(issue => {
+    // Filters tasks based on search term in title, description, or assignee
     const t = searchTerm.toLowerCase().trim();
-    if (!t) return true;
+    if (!t) return true; // Show all tasks when no search term
     return issue.title.toLowerCase().includes(t)
       || issue.description.toLowerCase().includes(t)
       || issue.assignee.toLowerCase().includes(t);
   });
 
+  // Counts how many tasks per column for the statistics display
   /** @param {Task[]} list */
   function computeCounts(list) {
     /** @type {Record<Status, number>} */
@@ -99,21 +112,24 @@
     return acc;
   }
 
+  // Create new tasks or update existing ones from form data
   /** @param {{title:string; assignee:string; description:string; status:Status; priority:Priority}} data */
   function addIssueFromForm(data) {
     const { title, assignee, description, status, priority } = data;
-    if (!title || !assignee) return;
-    // If editing, update existing; else add new
+    if (!title || !assignee) return; // Basic validation
+    
+    // If editing, update existing task; otherwise create new task
     if (editTarget) {
       issues = issues.map(i => i.id === editTarget.id ? { ...i, title, assignee, description, status, priority } : i);
     } else {
       issues = [...issues, { id: nextId++, title, assignee, description, status, priority }];
     }
     saveTasksToLocalStorage();
-    showModal = false;
-    editTarget = null;
+    showModal = false; // Close modal after submission
+    editTarget = null; // Reset edit state
   }
 
+  // Move task between columns by updating its status
   /** @param {number} id @param {Status} value */
   function updateStatus(id, value) {
     // Immutable update to ensure Svelte reactivity and count recomputation
@@ -121,22 +137,25 @@
     saveTasksToLocalStorage();
   }
 
+  // Converts priority names to numerical values for sorting (Urgent=0, None=3)
   /** @param {Priority} p */
   function priorityRank(p) {
     const order = { Urgent: 0, Medium: 1, Low: 2, None: 3 };
-    return order[p] ?? 3;
+    return order[p] ?? 3; // Default to lowest priority if unknown
   }
 
+  // Permanently remove a task from the system
   /** @param {number} id */
   function deleteTask(id) {
     issues = issues.filter(issue => issue.id !== id);
     saveTasksToLocalStorage();
   }
 
+  // Open modal in edit mode with pre-filled task data
   /** Open modal to edit an existing task */
   /** @param {Task} t */
   function openEdit(t) {
-    editTarget = { ...t };
+    editTarget = { ...t }; // Create a copy to avoid direct mutation
     showModal = true;
   }
 </script>
